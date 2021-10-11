@@ -1,9 +1,7 @@
 const inquirer = require('inquire');
+const fs = require('fs');
 
-
-class Employee {
-  
-}
+class teamMembers 
 
 inquirer
   .prompt({
@@ -20,4 +18,18 @@ inquirer
     type: 'input',
     name: 'email',
     messge: 'What is your employee email ?'
-  })
+  }, 
+  {
+    type: 'input',
+    name: 'officeNumber',
+    message: 'What is your office number ?'
+  },
+  {
+    type: "input",
+    name: 'position',
+    message: 'Select  an employees position in the company.',
+    chioces: [ 'Engineer', 'Intern']
+  }
+  )
+
+  
