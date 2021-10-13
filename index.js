@@ -1,44 +1,25 @@
 const inquirer = require('inquire');
 const fs = require('fs');
 
-class teamMembers {
-  constructor(name, id, email) {
-  this.name = name;
-  this.id = id;
-  this.email = email
-  }
-};
-  
-class manager extends teamMembers {
-    constructor(name, id, email, officeNumber) {
-      super(name);
-      super(email);
-      super(id);
-      this.officeNumber = officeNumber
-    }
-  };
+const team = [];
 
-class engineer extends teamMembers {
-    cconstructor(name, id, email, githubUserName) {
-      super(name);
-      super(email);
-      super(id);
-      this.githubUserName = githubUserName
-    }
-  }
+const Employee = require('.lib/employee');
+const Manager = require ('./lib/manager');
+const Engineer = require('./lib/manager');
+const Intern = require('./lib/Intern');
+// start prompt function
 
-class intern extends teamMembers {
-    constructor(name, id, email, school) {
-      super(name);
-      super(email);
-      super(id);
-      this.school = school
-    }
-  }
+// add manager
 
-let manager = new teamMembers(name, id, email, officeNumber)
-let engineer = new teamMembers(name, id, email, githubUserNAme)
-let intern = new teamMembers(name,id, email, school)
+// add team memebers, if(enginer) ....etc
+
+// add engineer
+
+// add intern
+
+// generate page
+
+// cal to start prompt
 
 inquirer
   .prompt(
@@ -66,7 +47,7 @@ inquirer
     type: "input",
     name: 'position',
     message: 'Select  an employees position in the company.',
-    chioces: [ 'Engineer', 'Intern']
+    chioces: [ 'Manager', 'Engineer', 'Intern']
   }
   );
   
@@ -74,14 +55,12 @@ inquirer
   inquirer
   .prompt({
     type: 'input',
-    name: 'githubName',
+    name: 'githubUserName',
     message: 'What is yout Github user name ?'
   })
 
   
   // intern question
-  const inquirer = require("inquirer");
-
 
 inquirer
 .prompt({
