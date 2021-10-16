@@ -1,73 +1,113 @@
-const inquirer = require('inquire');
-const fs = require('fs');
+const inquirer = require("inquirer");
+const fs = require("fs");
 
 const team = [];
 
-const Employee = require('.lib/employee');
-const Manager = require ('./lib/manager');
-const Engineer = require('./lib/manager');
-const Intern = require('./lib/Intern');
+const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const question1 = {
+    type: "input",
+    name: "name",
+    message: "What is your name ?",
+  };
+const question2=  {
+    type: "input",
+    name: "id",
+    message: "What is your employee ID ?",
+  };
+ const question3 = {
+    type: "input",
+    name: "email",
+    message: "What is your employee email ?",
+  };
+
+
 // start prompt function
+function startQuestions() {
+  inquirer
+    .prompt([ question1, question2, question3, {  
+    type: "input",
+    name: "officeNumber",
+    message: "What is your office number ?"}
+    ])
+    .then((data) => {
+      
+        const manager = new Manager(
+          data.name,
+          data.id,
+          data.email,
+          data.officeNumber
+        );
+        addEmployee();
+        console.log(manager);
+        console.log(`Manager's name: ${manager.getName()}`);
+        
+      });
+  };
 
-// add manager
+  function addEmployee () {
+    inquirer
+    .prompt({
+    type: "list",
+    name: "addEmployee",
+     message: " would you like to add another employee ?",
+    choices: ["Engineer", "Intern", "No"],
+  })
+  .then((response) => {
+    if (response.choices === "Engineer") {
+      engineerQuestions();
+    } else if (response.choices === "Intern") {
+      internQuestions();
+      } else genratePage();
+    });
+  }
 
-// add team memebers, if(enginer) ....etc
+function engineerQuestions() {
+  inquirer
+    .prompt([ question1, question2, question3, {
+      type: "input",
+      name: "githubUsername",
+      message: "What is your Github user name ?"}]
+      )
+    .then((data) => {
+      
+      const engineer = new Engineer(
+          data.name,
+          data.id,
+          data.email,
+          data.githubUserName
+        );
+        addEmployee();
+        console.log(engineer);
+        console.log(`Engineer's name: ${engineer.getName()}`);
+      });
+  };
 
-// add engineer
+function internQuestions() {
+  inquirer
+    .prompt([ question1, question2, question3, {
+      type: "input",
+      name: "school",
+      message: "What is the name of your school ?",
+    }])
+    .then((data) => {
+      const school = response.school;
+    
+        const intern = new Intern(
+          data.name, 
+          data.id, 
+          data.email, 
+          data.school
+          );
+        addEmployee();
+        console.log(intern);
+        console.log(`Intern's name: ${intern.getName()}`);
+    });
+  };
 
-// add intern
 
 // generate page
 
-// cal to start prompt
-
-inquirer
-  .prompt(
-   {
-    type: 'input',
-    name: 'name',
-    messge: 'What is your name ?'
-  },
-  {
-    type: 'input',
-    name: 'id',
-    messge: 'What is your employee ID ?'
-  },
-  {
-    type: 'input',
-    name: 'email',
-    messge: 'What is your employee email ?'
-  }, 
-  {
-    type: 'input',
-    name: 'officeNumber',
-    message: 'What is your office number ?'
-  },
-  {
-    type: "input",
-    name: 'position',
-    message: 'Select  an employees position in the company.',
-    chioces: [ 'Manager', 'Engineer', 'Intern']
-  }
-  );
-  
-// engineer question
-  inquirer
-  .prompt({
-    type: 'input',
-    name: 'githubUserName',
-    message: 'What is yout Github user name ?'
-  })
-
-  
-  // intern question
-
-inquirer
-.prompt({
-  type: 'input',
-  name: 'school',
-  message: 'What is the name of your school ?'
-})
-
-  const answers = (name, email, id, officeNumber)
-
+startQuestions();
