@@ -4,7 +4,7 @@ const Manager = require('../lib/Manager.js');
 jest.mock('../lib/Manager.js');
 
 test('created an manager object', () => {
-  const manager = new Manager
+  const manager = new Manager ('John')
 
   expect(manager.name).toBe(expect.any(String));
   expect(manager.id).toEqual(expect.any(Number));
