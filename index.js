@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-
+const generated = require("./teamPage")
 const team = [];
 
 const Employee = require("./lib/Employee");
@@ -44,7 +44,7 @@ function startQuestions() {
   } else if (response.employeeList === "Intern") {
       addIntern()
     }
-     else genratePage();
+     else writeToFile();
   });
   
   
@@ -123,12 +123,13 @@ function addIntern() {
   };
 
   function writeToFile(fileName, data) {
-    fs.writeToFile('./lib/team.html', data, err => {
+    fs.writeToFile('./lib/team.html', team, err => {
       if(err) {
         console.log(err)
       }
       return "team profile generated !";
     });
+    generatePage();
   };
 
   writeToFile();
