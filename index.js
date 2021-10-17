@@ -52,7 +52,7 @@ function startQuestions() {
     .prompt({
     type: "list",
     name: "addEmployee",
-     message: " would you like to add another employee ?",
+    message: " would you like to add another employee ?",
     choices: ["Engineer", "Intern", "No"],
   })
   .then((response) => {
