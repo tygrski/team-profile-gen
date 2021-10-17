@@ -7,6 +7,7 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const { start } = require("repl");
 const question1 = {
     type: "input",
     name: "name",
@@ -26,45 +27,56 @@ const question2=  {
 
 // start prompt function
 function startQuestions() {
+  
   inquirer
-    .prompt([ question1, question2, question3, {  
-    type: "input",
-    name: "officeNumber",
-    message: "What is your office number ?"}
-    ])
-    .then((data) => {
-      
-        const manager = new Manager(
-          data.name,
-          data.id,
-          data.email,
-          data.officeNumber
-        );
-        addEmployee();
-        console.log(manager);
-        console.log(`Manager's name: ${manager.getName()}`);
-        
-      });
+  .prompt({
+  type: "list",
+  name: "employeeList",
+  message: " would you like to add another employee ?",
+  choices: ["Engineer", "Intern", "Manager", 'None'],
+  question1, question2, question3
+})
+.then((response) => {
+  if (response.employeeList === "Manager") {
+    addManager();
+  } else if (response.employeeList === "Engineer") {
+    addEngineer();
+  } else if (response.employeeList === "Intern") {
+      addIntern()
+    }
+     else genratePage();
+  });
+  
+  
+  
+  inquirer
+  
   };
 
-  function addEmployee () {
+  function addManager () {
     inquirer
-    .prompt({
-    type: "list",
-    name: "addEmployee",
-    message: " would you like to add another employee ?",
-    choices: ["Engineer", "Intern", "No"],
-  })
-  .then((response) => {
-    if (response.choices === "Engineer") {
-      engineerQuestions();
-    } else if (response.choices === "Intern") {
-      internQuestions();
-      } else genratePage();
-    });
+    .prompt([ question1, question2, question3, {  
+      type: "input",
+      name: "officeNumber",
+      message: "What is your office number ?"}
+      ])
+      .then((data) => {
+        
+          const manager = new Manager(
+            data.name,
+            data.id,
+            data.email,
+            data.officeNumber
+          );
+          allEmployees = team.push(manager);
+          console.log(manager);
+          console.log(`Manager's name: ${manager.getName()}`);
+          console.log(team);
+          startQuestions();
+        });
   }
 
-function engineerQuestions() {
+function addEngineer() {
   inquirer
     .prompt([ question1, question2, question3, {
       type: "input",
@@ -72,20 +84,22 @@ function engineerQuestions() {
       message: "What is your Github user name ?"}]
       )
     .then((data) => {
-      
+      const githubUserName = data.githubUserName
       const engineer = new Engineer(
           data.name,
           data.id,
           data.email,
           data.githubUserName
         );
-        addEmployee();
+        allEmployees = team.push(engineer);
+        console.log(team);
         console.log(engineer);
         console.log(`Engineer's name: ${engineer.getName()}`);
+        startQuestions();
       });
   };
 
-function internQuestions() {
+function addIntern() {
   inquirer
     .prompt([ question1, question2, question3, {
       type: "input",
@@ -93,57 +107,30 @@ function internQuestions() {
       message: "What is the name of your school ?",
     }])
     .then((data) => {
-      const school = response.school;
-    
+        const school = data.school;
         const intern = new Intern(
           data.name, 
           data.id, 
           data.email, 
           data.school
           );
-        addEmployee();
+        allEmployees = team.push(intern);
+        console.log(team);
         console.log(intern);
         console.log(`Intern's name: ${intern.getName()}`);
+        startQuestions();
     });
   };
 
   function writeToFile(fileName, data) {
-    fs.writeFile('./lib/team.html', data, err => {
+    fs.writeToFile('./lib/team.html', data, err => {
       if(err) {
         console.log(err)
       }
       return "team profile generated !";
     });
   };
+
+  writeToFile();
   
- // generate page
- function genratePage(data) {
- 
-  `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-<div class="card" style="width: 18rem;">
-
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-   <p class="card-text"></p>
-   <p class="card-text"></P>
-</div>
-</div>
-
-
-
-</body>
-</html>
-  `
-  
-};
-
 startQuestions();
