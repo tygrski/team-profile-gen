@@ -11,19 +11,19 @@ const manager = (manager) =>
   </div>
 </div>`
 
-// const engineer = (engineer) =>
-//  for(var i =0; i< team.engineer; i++) {
-// `
-// <div class="card" style="width: 18rem;">
-//   <div class="card-body"> 
-//     <p><Manager</p>
-//     <p class="card-text">Name: ${engineer.getName()}</p>
-//     <p class="card-text">ID: ${engineer.getid()}</p>
-//     <p class="card-text">Email: ${engineer.getEmail()}</p>
-//     <p class="card-text">Github: ${engineer.guthubUserName}</p>
-//   </div>
-// </div>`
-//  }
+const engineer = (engineer) =>
+ for(var i =0; i< team.engineer; i++) {
+`
+<div class="card" style="width: 18rem;">
+  <div class="card-body"> 
+    <p><Manager</p>
+    <p class="card-text">Name: ${engineer.getName()}</p>
+    <p class="card-text">ID: ${engineer.getid()}</p>
+    <p class="card-text">Email: ${engineer.getEmail()}</p>
+    <p class="card-text">Github: ${engineer.guthubUserName}</p>
+  </div>
+</div>`
+ }
 
 const teamTemplate = (team) =>
  `
@@ -40,7 +40,7 @@ const teamTemplate = (team) =>
  <body>
  <div>
   <h1>${manager(team[0])}</h1> 
-  
+  <h1>${engineer(team)[0]}</h1>
  </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
