@@ -9,4 +9,4 @@
 
 ## Created with HTML, Javascript, Express.js and Node.js
 
-### MAde by Travis Tybor
+### Made by Travis Tybor
