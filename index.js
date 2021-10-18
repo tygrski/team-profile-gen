@@ -44,7 +44,7 @@ function startQuestions() {
   } else if (response.employeeList === "Intern") {
       addIntern()
     }
-     else writeToFile();
+     else generateTeam();
   });
   
   
@@ -122,16 +122,15 @@ function addIntern() {
     });
   };
 
-  function writeToFile(fileName, data) {
-    fs.writeToFile('./lib/team.html', team, err => {
-      if(err) {
-        console.log(err)
-      }
-      return "team profile generated !";
-    });
-    generatePage();
-  };
-
-  writeToFile();
+const content = teamTemplate
+function generateTeam (){
+  fs.writeFile('./dist/index.html', content, err => {
+    if (err) {
+      console.error(err)
+      return
+    }
+     console.log("file written successfully")
+  })
+};
   
 startQuestions();

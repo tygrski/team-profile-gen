@@ -1,8 +1,6 @@
 
 
-function genratePage() {
-  console.log( 'Team page has been created')
-
+const teamTemplate =
  `
 <!DOCTYPE html>
 <html lang="en">
@@ -28,4 +26,3 @@ function genratePage() {
  `
 
 
-};
