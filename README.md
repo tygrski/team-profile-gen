@@ -4,7 +4,7 @@
 
 ## Github pages live link https://tygrski.github.io/team-profile-gen/
 
-
+## To start application enter "node index.js" in your terminal and answer the questions.
 
 
 ## Created with HTML, Javascript, Express.js and Node.js
