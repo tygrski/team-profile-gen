@@ -134,5 +134,5 @@ function generateTeam (){
      console.log("file written successfully")
   })
 };
-  
+
 startQuestions();
