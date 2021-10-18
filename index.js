@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generated = require("./teamPage")
+const teamTemplate = require("./teamPage")
 const team = [];
 
 const Employee = require("./lib/Employee");
@@ -8,6 +8,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const { start } = require("repl");
+
 const question1 = {
     type: "input",
     name: "name",
@@ -122,8 +123,9 @@ function addIntern() {
     });
   };
 
-const content = teamTemplate
+
 function generateTeam (){
+  const content = teamTemplate(team)
   fs.writeFile('./dist/index.html', content, err => {
     if (err) {
       console.error(err)
