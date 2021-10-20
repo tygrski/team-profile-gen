@@ -21,7 +21,7 @@ const engineer = (engineer) =>{
       <p class="card-text">Name: ${engineer.getName()}</p>
       <p class="card-text">ID: ${engineer.getid()}</p>
       <p class="card-text">Email: ${engineer.getEmail()}</p>
-      <p class="card-text">Github: ${engineer.getGitHub()}</p>
+      <p class="card-text">Github:<a href="https://github.com/"${engineer.getGitHub()} target="_blank"></a></p>
   </div>`
  
 };
@@ -63,7 +63,7 @@ return `
    return  manager(user)
   } else if (user.title === "Engineer") {
    return  engineer(user)
-  }  else (user.title === "Intern") {
+  }  else if (user.title === "Intern") {
     return intern(user)
   }
   }
@@ -75,6 +75,7 @@ return `
 </html>
  `
 }
+
 module.exports = teamTemplate;
 
 
