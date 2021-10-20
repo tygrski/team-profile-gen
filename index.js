@@ -48,11 +48,7 @@ function startQuestions() {
      else generateTeam();
   });
   
-  
-  
-  inquirer
-  
-  };
+};
 
   function addManager () {
     inquirer
@@ -81,7 +77,7 @@ function addEngineer() {
   inquirer
     .prompt([ question1, question2, question3, {
       type: "input",
-      name: "githubUsername",
+      name: "githubUserName",
       message: "What is your Github user name ?"}]
       )
     .then((data) => {
@@ -126,6 +122,8 @@ function addIntern() {
 
 function generateTeam (){
   const content = teamTemplate(team)
+  console.log(content);
+  console.log(team);
   fs.writeFile('./dist/index.html', content, err => {
     if (err) {
       console.error(err)

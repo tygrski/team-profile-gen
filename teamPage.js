@@ -11,22 +11,38 @@ const manager = (manager) =>
   </div>
 </div>`
 
-const engineer = (engineer) =>
- for(var i =0; i< team.engineer; i++) {
-`
-<div class="card" style="width: 18rem;">
-  <div class="card-body"> 
-    <p><Manager</p>
-    <p class="card-text">Name: ${engineer.getName()}</p>
-    <p class="card-text">ID: ${engineer.getid()}</p>
-    <p class="card-text">Email: ${engineer.getEmail()}</p>
-    <p class="card-text">Github: ${engineer.guthubUserName}</p>
-  </div>
-</div>`
- }
+const engineer = (engineer) =>{
+  console.log('TESING',engineer)
+ 
+ 
+  return`<div class="card" style="width: 18rem;">
+    <div class="card-body"> 
+      <p><Engineer</p>
+      <p class="card-text">Name: ${engineer.getName()}</p>
+      <p class="card-text">ID: ${engineer.getid()}</p>
+      <p class="card-text">Email: ${engineer.getEmail()}</p>
+      <p class="card-text">Github: ${engineer.getGitHub()}</p>
+  </div>`
+ 
+};
 
-const teamTemplate = (team) =>
- `
+const intern = (intern) =>{
+  console.log('TESING',intern)
+ 
+ 
+  return`<div class="card" style="width: 18rem;">
+    <div class="card-body"> 
+      <p><Intern</p>
+      <p class="card-text">Name: ${intern.getName()}</p>
+      <p class="card-text">ID: ${intern.getid()}</p>
+      <p class="card-text">Email: ${intern.getEmail()}</p>
+      <p class="card-text">Github: ${intern.getSchool()}</p>
+  </div>`
+};
+
+const teamTemplate = (team) => {
+console.log("test!!!",team)
+return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,14 +55,26 @@ const teamTemplate = (team) =>
  </head>
  <body>
  <div>
-  <h1>${manager(team[0])}</h1> 
-  <h1>${engineer(team)[0]}</h1>
+  
+  ${team.map(user=>{
+    console.log("map",user.Manager);
+
+  if (user.title === "Manager"){
+   return  manager(user)
+  } else if (user.title === "Engineer") {
+   return  engineer(user)
+  }  else (user.title === "Intern") {
+    return intern(user)
+  }
+  }
+)}
+
  </div>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
  `
-
+}
 module.exports = teamTemplate;
 
 
